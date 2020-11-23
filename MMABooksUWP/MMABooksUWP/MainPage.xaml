@@ -1,0 +1,66 @@
+﻿<Page
+    x:Class="MMABooksUWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MMABooksUWP"
+    xmlns:model="using:MMABooksUWP.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    FontFamily="Comic Sans MS"
+    Loaded="Page_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0"/>
+        <StackPanel Grid.Column="0" Orientation="Vertical" Padding="10">
+            <TextBlock Padding="6" FontSize="32">Customer Information</TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="6" Padding="6" >
+                <TextBlock TextAlignment="Right" Width="240" FontSize="24" Padding="6">Find a Customer:</TextBlock>
+                <TextBox Width="200" FontSize="20" Name="customerIdTxt" PlaceholderText="customer id"></TextBox>
+                <Button Width="200" FontSize="20" Margin="6" Padding="6" Name="findBtn" Click="findBtn_Click">Find</Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="6" Padding="6">
+                <TextBlock TextAlignment="Right" Width="240" FontSize="24" Padding="6">Name:</TextBlock>
+                <TextBox Width="406" FontSize="20" Name="customerNameTxt"
+                         Text="{x:Bind Selected.Name}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="6" Padding="6">
+                <TextBlock TextAlignment="Right" Width="240" FontSize="24" Padding="6">Address:</TextBlock>
+                <TextBox Width="406" FontSize="20" Name="customerAddressTxt"
+                         Text="{x:Bind Selected.Address}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="6" Padding="6">
+                <TextBlock TextAlignment="Right" Width="240" FontSize="24" Padding="6">City:</TextBlock>
+                <TextBox Width="406" FontSize="20" Name="customerCityTxt"
+                         Text="{x:Bind Selected.City}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="6" Padding="6">
+                <TextBlock TextAlignment="Right" Width="240" FontSize="24" Padding="6">State:</TextBlock>
+                <ComboBox Width="406" FontSize="20" Name="customerStateCBox" 
+                          ItemsSource="{x:Bind States}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="model:State">
+                            <TextBlock Text="{x:Bind StateName}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="6" Padding="6">
+                <TextBlock TextAlignment="Right" Width="240" FontSize="24" Padding="6">Zipcode:</TextBlock>
+                <TextBox Width="406" FontSize="20" Name="customerZipcodeTxt"
+                         Text="{x:Bind Selected.ZipCode}"></TextBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Padding="10" Background="{ThemeResource AppBarBackgroundThemeBrush}">
+            <Button Width="200" FontSize="20" Margin="6" Padding="6" Name="deleteBtn" Click="deleteBtn_Click">Delete</Button>
+            <Button Width="200" FontSize="20" Margin="6" Padding="6" Name="editBtn" Click="editBtn_Click">Edit</Button>
+            <Button Width="200" FontSize="20" Margin="6" Padding="6" Name="addBtn" Click="addBtn_Click">Add</Button>
+            <Button Width="200" FontSize="20" Margin="6" Padding="6" Name="saveBtn" Click="saveBtn_Click">Save</Button>
+            <Button Width="200" FontSize="20" Margin="6" Padding="6" Name="cancelBtn" Click="cancelBtn_Click">Cancel</Button>
+        </StackPanel>
+    </Grid>
+</Page>
